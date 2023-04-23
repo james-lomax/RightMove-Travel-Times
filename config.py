@@ -22,4 +22,4 @@ def load_config():
     return ConfigRoot.from_json(contents)
 
 
-print(load_config())
+# print(load_config())

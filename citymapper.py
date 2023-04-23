@@ -1,6 +1,17 @@
 import json
 import requests
 
+from dataclasses_json import dataclass_json
+from dataclasses import dataclass
+
+
+@dataclass_json
+@dataclass
+class TravelTimes:
+    walk_travel_time_minutes: int
+    transit_time_minutes: int
+    bike_time_minutes: int
+
 
 API_BASE_URL = "https://api.external.citymapper.com"
 ENDPOINT = "/api/1/traveltimes"
@@ -36,12 +47,12 @@ def get_cached_response(cache_key):
         return None
 
 
-def get_travel_times(start_coords, end_coords):
+def get_travel_times(start_coords, end_coords) -> TravelTimes:
     cache_key = generate_cache_key(start_coords, end_coords)
     cached_response = get_cached_response(cache_key)
 
     if cached_response:
-        return cached_response
+        return TravelTimes.from_dict(cached_response)
 
     headers = {
         'Citymapper-Partner-Key': API_KEY
@@ -57,13 +68,13 @@ def get_travel_times(start_coords, end_coords):
     if response.status_code == 200:
         response_data = response.json()
         cache_response(cache_key, response_data)
-        return response_data
+        return TravelTimes.from_dict(response_data)
     else:
         raise Exception(f"Request failed with status code {response.status_code}")
 
 
-start_coords = [51.518276,-0.110500]
-end_coords = [51.519953,-0.311123]
+# start_coords = [51.518276,-0.110500]
+# end_coords = [51.519953,-0.311123]
 
-travel_times = get_travel_times(start_coords, end_coords)
-print(travel_times)
+# travel_times = get_travel_times(start_coords, end_coords)
+# print(travel_times)
