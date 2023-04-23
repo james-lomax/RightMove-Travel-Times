@@ -60,7 +60,7 @@ def load_apartments(file_path):
 
     return apartments
 
-file_path = 'apartments.csv'
-apartments = load_apartments(file_path)
-for apartment in apartments:
-    print(apartment)
+# file_path = 'apartments.csv'
+# apartments = load_apartments(file_path)
+# for apartment in apartments:
+#     print(apartment)
