@@ -70,6 +70,7 @@ def get_travel_times(start_coords, end_coords) -> TravelTimes:
         cache_response(cache_key, response_data)
         return TravelTimes.from_dict(response_data)
     else:
+        print('CM req failed: ' + response.text)
         raise Exception(f"Request failed with status code {response.status_code}")
 
 

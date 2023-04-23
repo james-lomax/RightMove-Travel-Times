@@ -7,6 +7,9 @@ API_KEY_FILENAME = "google_maps_api_key.txt"
 with open('google_maps_api_key.txt', 'r') as f:
     API_KEY = f.read().strip()
 
+# Sometimes our addresses confuse Gmaps, so always clarify the city we're in
+CLARIFY_CITY_SUFFIX = ', London'
+
 
 def load_cache(filename):
     if os.path.exists(filename):
@@ -21,7 +24,7 @@ def save_cache(filename, cache):
 
 def get_lat_lon(address):
     base_url = "https://maps.googleapis.com/maps/api/geocode/json"
-    payload = {"address": address, "key": API_KEY}
+    payload = {"address": address + CLARIFY_CITY_SUFFIX, "key": API_KEY}
     response = requests.get(base_url, params=payload)
 
     if response.status_code == 200:
@@ -50,8 +53,8 @@ def get_lat_lon_cached(address):
             print("Saved coordinates to cache.")
     return lat, lon
 
-# address = "Finchley Road, Hampstead NW3"
-# lat, lon = get_lat_lon_cached(address)
+# address = "Northesk House, Tent Street, E1, London"
+# lat, lon = get_lat_lon(address)
 
 # if lat and lon:
 #     print("Latitude:", lat)

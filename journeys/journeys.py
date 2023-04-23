@@ -49,16 +49,17 @@ def annotate_apartments(apartments):
     config = load_config()
     annotated = []
     for apartment in apartments:
-        print(f'Processing apartment "{apartment.description}" at {apartment.address}')
+        print(f'Processing apartment at {apartment.address}')
         try:
             annotated.append(annotate_apartment(apartment, config))
         except Exception as e:
-            print(f'Could not annotate apartment "{apartment.description}" at {apartment.address}: {e}')
+            print(f'Could not annotate apartment at {apartment.address}: {e}')
     return annotated
 
 
 apartments = load_apartments('apartments.csv')
 annotated = annotate_apartments(apartments)
+print(f"DONE. Annotated {len(annotated)}/{len(apartments)} apartments successfully.")
 
 with open('output.json', 'w') as f:
     f.write(StateRoot(apartments=annotated).to_json())
