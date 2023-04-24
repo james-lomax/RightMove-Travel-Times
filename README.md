@@ -2,7 +2,7 @@ This is a hacky project to scrape data from rightmove and annotate with useful t
 
 ## Scraping
 
-Scraping is done by scrapestorm, outputting a CSV file.
+Scraping is done by Browse AI, outputted to CSV - hoping to automate using their REST API.
 
 ## journeys/
 

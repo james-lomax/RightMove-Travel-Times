@@ -28,35 +28,42 @@ def validate_fields(row, fieldnames):
 
 def load_apartments(file_path):
     apartments = []
-    required_fields = ['Title_link', 'Thumbnail', 'Title', 'propertyCard-address', 'propertyCard-link']
+    required_fields = ['Address', 'Description', 'Price', 'ListingUrl']
 
     with open(file_path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
-        for row in reader:
+        for index, row in enumerate(reader):
+            row_num = index + 1
             try:
-                row = {k.strip('\ufeff'):v for k,v in row.items()}
                 validate_fields(row, required_fields)
 
-                if not validate_url(row['Title_link']):
-                    raise ValueError("Invalid listing_url", row['Title_link'])
-                if not validate_url(row['Thumbnail']):
-                    raise ValueError("Invalid thumbnail_url", row['Thumbnail'])
-                if not validate_price(row['Title']):
-                    raise ValueError("Invalid price_pcm", row['Title'])
-                if not row['propertyCard-address']:
-                    raise ValueError("Empty address", row['propertyCard-address'])
+                if not validate_url(row['ListingUrl']):
+                    raise ValueError("Invalid listing_url", row['ListingUrl'])
+                if not validate_price(row['Price']):
+                    raise ValueError("Invalid price_pcm", row['Price'])
+                if not row['Address']:
+                    raise ValueError("Empty address", row['Address'])
+                
+                thumbnail_url = ""
+                for thumbnail_key in ['Thumbnail', 'Thumbnail2', 'Thumbnail3', 'Thumbnail4']:
+                    if thumbnail_key in row and row[thumbnail_key].startswith('https://media.rightmove.co.uk:443/dir/crop/'):
+                        thumbnail_url = row[thumbnail_key]
+                        break
+                
+                if not thumbnail_url:
+                    print(f"WARNING: Could not find thumbnail URL in row {row_num}")
 
                 apartment = Apartment(
-                    listing_url=row['Title_link'],
-                    thumbnail_url=row['Thumbnail'],
-                    price_pcm=parse_price(row['Title']),
-                    address=row['propertyCard-address'],
-                    description=row['propertyCard-link']
+                    listing_url=row['ListingUrl'],
+                    thumbnail_url=thumbnail_url,
+                    price_pcm=parse_price(row['Price']),
+                    address=row['Address'],
+                    description=row['Description']
                 )
                 apartments.append(apartment)
 
             except (ValueError, KeyError) as e:
-                print(f"Row skipped: {e}")
+                print(f"Row {row_num} skipped: {e}")
 
     return apartments
 
