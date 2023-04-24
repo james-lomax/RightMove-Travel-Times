@@ -4,8 +4,7 @@ import os
 
 CACHE_FILENAME = "geocoding_cache.json"
 API_KEY_FILENAME = "google_maps_api_key.txt"
-with open('google_maps_api_key.txt', 'r') as f:
-    API_KEY = f.read().strip()
+API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
 # Sometimes our addresses confuse Gmaps, so always clarify the city we're in
 CLARIFY_CITY_SUFFIX = ', London'

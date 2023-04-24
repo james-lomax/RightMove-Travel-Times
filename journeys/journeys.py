@@ -3,9 +3,10 @@ from dataclasses_json import dataclass_json
 from dataclasses import dataclass
 
 from citymapper import TravelTimes, get_travel_times
-from config import load_config, ConfigDestination
+from config import load_config
 from apartments import Apartment, load_apartments
 from geodecode import get_lat_lon_cached
+from browseai import get_latest_task_data
 
 
 @dataclass_json
@@ -57,7 +58,10 @@ def annotate_apartments(apartments):
     return annotated
 
 
-apartments = load_apartments('apartments.csv')
+print("Downloading latest data...")
+properties_data = get_latest_task_data('0b076be5-7476-4c11-b9c7-4ac67534034f')
+print("Computing trips...")
+apartments = load_apartments(properties_data['capturedLists']['Properties'])
 annotated = annotate_apartments(apartments)
 print(f"DONE. Annotated {len(annotated)}/{len(apartments)} apartments successfully.")
 

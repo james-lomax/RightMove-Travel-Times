@@ -1,3 +1,4 @@
+import os
 import json
 import requests
 
@@ -17,8 +18,7 @@ API_BASE_URL = "https://api.external.citymapper.com"
 ENDPOINT = "/api/1/traveltimes"
 CACHE_FILE = "travel_times_cache.json"
 
-with open('citymapper_api_key.txt', 'r') as file:
-    API_KEY = file.read().strip()
+API_KEY = os.environ.get('CITYMAPPER_API_KEY')
 
 
 def generate_cache_key(start_coords, end_coords):
