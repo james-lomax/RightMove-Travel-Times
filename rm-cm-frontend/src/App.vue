@@ -36,7 +36,9 @@ function travelTimeForJourney(journey, mode) {
 }
 
 function travelTimeForApartment(apartment, mode) {
-  return Object.values(apartment.journeys).map((j) => travelTimeForJourney(j, mode)).reduce((a, x) => a + x, 0)
+  return Object.values(apartment.journeys)
+    .map((j) => travelTimeForJourney(j, mode))
+    .reduce((a, x) => Math.max(a, x), 0)
 }
 
 export default {
