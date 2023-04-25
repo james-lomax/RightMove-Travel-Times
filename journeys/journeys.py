@@ -63,6 +63,8 @@ print("Downloading latest data...")
 properties_data = get_latest_task_data(os.environ.get('BROWSE_AI_ROBOT_ID'))
 print("Computing trips...")
 apartments = load_apartments(properties_data['capturedLists']['Properties'])
+# Deduplicate rows
+apartments = list({a.listing_url: a for a in apartments}.values())
 annotated = annotate_apartments(apartments)
 print(f"DONE. Annotated {len(annotated)}/{len(apartments)} apartments successfully.")
 
