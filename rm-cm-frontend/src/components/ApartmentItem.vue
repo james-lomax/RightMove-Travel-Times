@@ -1,6 +1,5 @@
 <template>
 <v-card class="mx-auto mb-4" max-width="900">
-    <v-card-content>
     <v-row>
         <v-col cols="4">
             <a :href="apartment.listing_url" target="_blank">
@@ -12,7 +11,7 @@
             <a :href="apartment.listing_url" target="_blank">{{ apartment.address }}</a>
         </v-card-title>
         <v-card-subtitle>Price: £{{ apartment.price_pcm }} per month</v-card-subtitle>
-        <v-simple-table>
+        <v-table>
             <template v-slot:default>
             <thead>
                 <tr>
@@ -31,10 +30,9 @@
                 </tr>
             </tbody>
             </template>
-        </v-simple-table>
+        </v-table>
         </v-col>
     </v-row>
-    </v-card-content>
 </v-card>
 </template>
   
