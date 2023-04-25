@@ -14,9 +14,10 @@ class TravelTimes:
     bike_time_minutes: int
 
 
+os.makedirs('cache', exist_ok=True)
 API_BASE_URL = "https://api.external.citymapper.com"
 ENDPOINT = "/api/1/traveltimes"
-CACHE_FILE = "travel_times_cache.json"
+CACHE_FILE = "cache/travel_times_cache.json"
 
 API_KEY = os.environ.get('CITYMAPPER_API_KEY')
 

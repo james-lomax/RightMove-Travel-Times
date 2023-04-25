@@ -2,7 +2,8 @@ import requests
 import json
 import os
 
-CACHE_FILENAME = "geocoding_cache.json"
+os.makedirs('cache', exist_ok=True)
+CACHE_FILENAME = "cache/geocoding_cache.json"
 API_KEY_FILENAME = "google_maps_api_key.txt"
 API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
