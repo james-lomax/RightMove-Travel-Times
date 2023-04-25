@@ -8,7 +8,7 @@ Scraping is done by Browse AI, data is pulled using the REST API.
 
 ## journeys/
 
-Python code to processing the CSV data resulting from scrapestorms run into relevant details, compute journey times to configured destinations and output the annotated data.
+Python code to process the Browse AI scrape results, compute journey times to configured destinations and output the annotated data.
 
 Run `python journeys.py` to turn apartments.csv into output.json. Note the local caching used here means subsequent runs require fewer requests.
 
@@ -21,7 +21,7 @@ export BROWSE_AI_API_KEY=...
 export BROWSE_AI_ROBOT_ID=...
 ```
 
-## frontend/
+## rm-cm-frontend/
 
 Vue.js/veutify frontend to view the sorted lists of apartments.
 
