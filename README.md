@@ -25,7 +25,7 @@ export BROWSE_AI_ROBOT_ID=...
 
 Vue.js/veutify frontend to view the sorted lists of apartments.
 
-To test locally, build the output.json file and copy to rm-cm-frontend/public, then run:
+To test locally, build the apartments.json file first with then run:
 
 ```
 yarn dev

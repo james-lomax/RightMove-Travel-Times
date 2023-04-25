@@ -68,5 +68,5 @@ apartments = list({a.listing_url: a for a in apartments}.values())
 annotated = annotate_apartments(apartments)
 print(f"DONE. Annotated {len(annotated)}/{len(apartments)} apartments successfully.")
 
-with open('output.json', 'w') as f:
+with open('../rm-cm-frontend/public/apartments.json', 'w') as f:
     f.write(StateRoot(apartments=annotated).to_json())

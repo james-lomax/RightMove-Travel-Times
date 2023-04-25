@@ -46,7 +46,6 @@ jobs:
         run: |
           cd rm-cm-frontend
           yarn build
-          cp ../journeys/output.json dist/output.json
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
