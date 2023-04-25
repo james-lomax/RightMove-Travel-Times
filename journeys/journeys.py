@@ -1,3 +1,4 @@
+import os
 import typing as t
 from dataclasses_json import dataclass_json
 from dataclasses import dataclass
@@ -59,7 +60,7 @@ def annotate_apartments(apartments):
 
 
 print("Downloading latest data...")
-properties_data = get_latest_task_data('0b076be5-7476-4c11-b9c7-4ac67534034f')
+properties_data = get_latest_task_data(os.environ.get('BROWSE_AI_ROBOT_ID'))
 print("Computing trips...")
 apartments = load_apartments(properties_data['capturedLists']['Properties'])
 annotated = annotate_apartments(apartments)

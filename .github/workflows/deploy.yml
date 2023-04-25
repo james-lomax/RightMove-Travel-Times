@@ -40,6 +40,7 @@ jobs:
           CITYMAPPER_API_KEY: ${{ secrets.CITYMAPPER_API_KEY }}
           BROWSE_AI_API_KEY: ${{ secrets.BROWSE_AI_API_KEY }}
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          BROWSE_AI_ROBOT_ID: ${{ secrets.BROWSE_AI_ROBOT_ID }}
 
       - name: Build content
         run: |

@@ -33,7 +33,3 @@ def get_latest_task_data(robot_id):
   capUrl = task["capturedDataTemporaryUrl"]
   assert capUrl is not None
   return requests.get(capUrl).json()
-
-
-# data = get_latest_task_data('0b076be5-7476-4c11-b9c7-4ac67534034f')
-# print(data['capturedLists']['Properties'][0])
