@@ -62,12 +62,13 @@ export default {
         },
       ],
       sortOptions: [
+        "newest",
         "price",
         "walk",
         "transit",
         "bike",
       ],
-      selectedSortOption: "price",
+      selectedSortOption: "newest",
     };
   },
   mounted() {
@@ -90,7 +91,10 @@ export default {
     },
     sort(apartments) {
       const sortBy = this.selectedSortOption;
-      if (sortBy == 'price') {
+      if (sortBy == 'newest') {
+        // this is dodgey af but we happen to get it in this order anyway ¯\_(ツ)_/¯
+        return apartments
+      } else if (sortBy == 'price') {
         return apartments.slice().sort((a, b) => {
           return a.apartment.price_pcm - b.apartment.price_pcm;
         })
