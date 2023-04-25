@@ -14,6 +14,7 @@ class ConfigDestination:
 @dataclass
 class ConfigRoot:
     destinations: t.List[ConfigDestination]
+    address_overrides: dict
 
 
 def load_config():

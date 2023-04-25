@@ -54,12 +54,3 @@ def get_lat_lon_cached(address):
 
 def is_address_just_london(address):
     return get_lat_lon_cached(address) == get_lat_lon_cached('London')
-
-# address = "Northesk House, Tent Street, E1, London"
-# lat, lon = get_lat_lon(address)
-
-# if lat and lon:
-#     print("Latitude:", lat)
-#     print("Longitude:", lon)
-# else:
-#     print("Unable to get coordinates.")

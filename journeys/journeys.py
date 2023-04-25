@@ -51,6 +51,12 @@ def annotate_apartment(apartment, config):
 
 def annotate_apartments(apartments):
     config = load_config()
+    
+    # Override addresses where the geodecode fails
+    for apartment in apartments:
+        if apartment.listing_url in config.address_overrides:
+            apartment.address = config.address_overrides[apartment.listing_url]
+
     annotated = []
     for apartment in apartments:
         print(f'Processing apartment at {apartment.address}')
