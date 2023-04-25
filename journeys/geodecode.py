@@ -44,14 +44,16 @@ def get_lat_lon_cached(address):
     cache = load_cache(CACHE_FILENAME)
     if address in cache:
         lat, lon = cache[address]
-        print("Using cached coordinates.")
     else:
         lat, lon = get_lat_lon(address)
         if lat and lon:
             cache[address] = (lat, lon)
             save_cache(CACHE_FILENAME, cache)
-            print("Saved coordinates to cache.")
     return lat, lon
+
+
+def is_address_just_london(address):
+    return get_lat_lon_cached(address) == get_lat_lon_cached('London')
 
 # address = "Northesk House, Tent Street, E1, London"
 # lat, lon = get_lat_lon(address)

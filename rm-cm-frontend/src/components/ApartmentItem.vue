@@ -9,6 +9,7 @@
         <v-col cols="8">
         <v-card-title>
             <a :href="apartment.listing_url" target="_blank">{{ apartment.address }}</a>
+            <span v-if="suspicious_address">⚠️ Sus address</span>
         </v-card-title>
         <v-card-subtitle>Price: £{{ apartment.price_pcm }} per month</v-card-subtitle>
         <v-table>
@@ -48,6 +49,10 @@ props: {
     type: Object,
     required: true,
     },
+    suspicious_address: {
+        type: Boolean,
+        required: true
+    }
 },
 };
 </script>

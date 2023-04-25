@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from citymapper import TravelTimes, get_travel_times
 from config import load_config
 from apartments import Apartment, load_apartments
-from geodecode import get_lat_lon_cached
+from geodecode import get_lat_lon_cached, is_address_just_london
 from browseai import get_latest_task_data
 
 
@@ -21,6 +21,7 @@ class Journey:
 class AnnotatedApartment:
     apartment: Apartment
     journeys: t.Dict[str, Journey]
+    suspicious_address: bool
 
 
 @dataclass_json
@@ -43,7 +44,8 @@ def annotate_apartment(apartment, config):
         journeys={
             dst.name: compute_journey(apartment.address, dst.address)
             for dst in config.destinations
-        }
+        },
+        suspicious_address=is_address_just_london(apartment.address)
     )
 
 

@@ -15,6 +15,7 @@
       :key="apartmentData.apartment.listing_url"
       :apartment="apartmentData.apartment"
       :journeys="apartmentData.journeys"
+      :suspicious_address="apartmentData.suspicious_address"
     ></ApartmentItem>
   </v-container>
 </template>
