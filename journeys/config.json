@@ -1,8 +1,12 @@
 {
   "destinations": [
     {
-      "name": "Work",
-      "address": "126 Chancery Lane WC2A 1PP"
+      "name": "Liverpool Street",
+      "address": "Liverpool St, London EC2M 7PY"
+    },
+    {
+      "name": "Charing Cross",
+      "address": "Charing Cross, WC2N 5DP"
     }
   ]
 }
