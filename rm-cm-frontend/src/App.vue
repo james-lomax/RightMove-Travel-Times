@@ -6,7 +6,6 @@
           :items="sortOptions"
           v-model="selectedSortOption"
           label="Sort by"
-          @change="sortApartments"
           outlined
         ></v-select>
       </v-col>
@@ -48,7 +47,8 @@ export default {
   },
   data() {
     return {
-      apartments: [
+      apartments: [],
+      sortedApartments: [
         {
           "apartment": {
             "listing_url": "",
@@ -70,21 +70,25 @@ export default {
       selectedSortOption: "price",
     };
   },
-  computed: {
-    sortedApartments() {
-      return this.sortApartments(this.apartments);
-    },
-  },
   mounted() {
     this.updateData()
+  },
+  watch: {
+    selectedSortOption: function() { this.sortApartments() }
   },
   methods: {
     async updateData() {
       let rsp = await fetch('apartments.json')
       let data = await rsp.json()
       this.apartments = data.apartments
+      this.sortedApartments = this.apartments
     },
-    sortApartments(apartments) {
+    sortApartments() {
+      console.log("Begin sorting")
+      this.sortedApartments = this.sort(this.apartments)
+      console.log("End sorting")
+    },
+    sort(apartments) {
       const sortBy = this.selectedSortOption;
       if (sortBy == 'price') {
         return apartments.slice().sort((a, b) => {
