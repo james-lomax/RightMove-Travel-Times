@@ -1,0 +1,40 @@
+{
+    "apartments": [
+        {
+            "apartment": {
+                "listing_url": "https://www.rightmove.co.uk/properties/132861863#/?channel=RES_LET",
+                "thumbnail_url": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/113k/112915/132861863/112915_P260808_IMG_00_0000_max_476x317.jpeg",
+                "price_pcm": 1950,
+                "address": "Coldbath Street London SE13",
+                "description": "A charming two bedroom furnished flat located within close proximity to Greenwich Town Centre and Blackheath Village."
+            },
+            "journeys": {
+                "Work": {
+                    "travel_times": {
+                        "walk_travel_time_minutes": 122,
+                        "transit_time_minutes": 44,
+                        "bike_time_minutes": 45
+                    }
+                }
+            }
+        },
+        {
+            "apartment": {
+                "listing_url": "https://www.rightmove.co.uk/properties/134022131#/?channel=RES_LET",
+                "thumbnail_url": "https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/192k/191414/134022131/191414_P213712_IMG_00_0000_max_476x317.jpeg",
+                "price_pcm": 1650,
+                "address": "Wisteria Road London SE13",
+                "description": "A recently redecorated two bedroom ground floor apartment in Lewisham. Having two large double bedrooms and a seperate reception room and also having access to off street parking."
+            },
+            "journeys": {
+                "Work": {
+                    "travel_times": {
+                        "walk_travel_time_minutes": 145,
+                        "transit_time_minutes": 49,
+                        "bike_time_minutes": 54
+                    }
+                }
+            }
+        }
+    ]
+}
