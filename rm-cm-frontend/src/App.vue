@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     async updateData() {
-      let rsp = await fetch('http://localhost:3095/output.json')
+      let rsp = await fetch('output.json')
       let data = await rsp.json()
       this.apartments = data.apartments
     },
