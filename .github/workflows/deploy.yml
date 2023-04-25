@@ -11,14 +11,41 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Cache journey lookups
+        uses: actions/cache@v3
+        with:
+          key: build-cache
+          path: |
+            journeys/cache
+            rm-cm-frontend/node_modules
+
+      - name: Install dependencies
+        run: |
+          pip install -r journeys/requirements.txt
+          cd rm-cm-frontend
+          yarn install
+
+      - name: Compute journeys
+        run: |
+          cd journeys
+          python journeys.py
+        env:
+          CITYMAPPER_API_KEY: ${{ secrets.CITYMAPPER_API_KEY }}
+          BROWSE_AI_API_KEY: ${{ secrets.BROWSE_AI_API_KEY }}
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
 
       - name: Build content
         run: |
           cd rm-cm-frontend
-          yarn install
           yarn build
-          cp ../journeys/sample_output.json dist/output.json
+          cp ../journeys/output.json dist/output.json
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
